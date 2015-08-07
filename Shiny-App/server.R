@@ -29,6 +29,8 @@ ybuffer = c(0, 10000)
 mg0 <- c(0, 0, 0, 0)
 mg1 <- c(-5, 0, 0, 0)
 mg2 <- c(-12, 0, 0, 0)
+mg2_zoom <- c(-5,0,0,0)
+
 ####################################################################################################################################
 #We couldn't get the US Albers shapefile to show up when running the Shiny App.
 #But we had the code below from Alex Dye for viewing Canada that he used when playing around with Shiny that we could make work 
@@ -44,8 +46,11 @@ shinyServer(function(input,output){
         sub$meansDiscrete <- cut(sub$meansCut, breaks = breaks, include.lowest = TRUE,labels = FALSE)
         sub$sdsDiscrete <- cut(sub$sdsCut, breaks = breaks, include.lowest = TRUE,labels = FALSE)
     }
+    if(input$zoom) { 
+        sub <- subset(sub, x > input$xlim1 & x < input$xlim2 & y > input$ylim1 & y < input$ylim2)
+    }
     sub
-   })
+  })
   dataset2 <- reactive(function(){
     if(input$taxon2 != "None") {
         sub <- subset(all_taxa, taxon == input$taxon2)
@@ -56,12 +61,17 @@ shinyServer(function(input,output){
             sub$meansDiscrete <- cut(sub$meansCut, breaks = breaks, include.lowest = TRUE,labels = FALSE)
             sub$sdsDiscrete <- cut(sub$sdsCut, breaks = breaks, include.lowest = TRUE,labels = FALSE)
         }
+        if(input$zoom) {
+            sub <- subset(sub, x > input$xlim1 & x < input$xlim2 & y > input$ylim1 & y < input$ylim2)
+            
+        }
         sub
     } else NULL
    })
   
   output$MapPlot<-renderPlot({
      if(input$taxon2 == "None") mg <- mg0 else mg <- mg1
+     if(input$taxon2 != "None" && input$zoom) mg2 <- mg2_zoom
      tmp <- cbind(breaks[1:(length(breaks)-1)], breaks[2:length(breaks)])
      tmp[length(unique(dataset1()$meansDiscrete)), 2] <- max(dataset1()$means)
      breaklabels <- apply(tmp, 1,  function(r) { sprintf("%0.2f - %0.2f", r[1], r[2]) })

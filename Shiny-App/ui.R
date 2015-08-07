@@ -22,6 +22,27 @@ shinyUI(pageWithSidebar(
      checkboxInput(inputId = "continuous",
       label = strong("Continuous scale"),
       value = TRUE),
+     checkboxInput(inputId = "zoom",
+      label = strong("Zoom"),
+      value = FALSE),
+      
+      conditionalPanel(condition = "input.zoom == true",
+                   
+    sliderInput(inputId = "xlim1",
+        label = "West limit",
+        min = -67000, max = 2300000, value = -67000, step = 100000),
+    sliderInput(inputId = "xlim2",
+        label = "East limit",
+        min = -67000, max = 2300000, value = 2300000, step = 100000),
+    sliderInput(inputId = "ylim2",
+        label = "North limit",
+         min = 62000, max = 1494000, value = 1494000, step = 100000),
+     sliderInput(inputId = "ylim1",
+         label = "South limit",
+         min = 62000, max = 1494000, value = 62000, step = 100000)
+                   
+   ),
+  
     width = 3), 
   mainPanel(plotOutput("MapPlot", width = "800px"), width = 9))
 )
