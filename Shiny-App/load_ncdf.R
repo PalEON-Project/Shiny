@@ -1,7 +1,7 @@
 library(raster)
 library(ncdf4)
 
-domain <- nc_open('data/composition_v0.3.nc', write = FALSE)
+domain <- nc_open('Data/composition_v0.3.nc', write = FALSE)
 
 taxa <- unique(names(domain$var))
 
@@ -24,4 +24,4 @@ taxon_to_df <- function(taxon){
 
 all_taxa <- do.call(rbind.data.frame,lapply(taxa, taxon_to_df))
 
-saveRDS(object = all_taxa, file = 'data/all_taxa.RDS')
+saveRDS(object = all_taxa, file = 'Data/all_taxa.RDS')
