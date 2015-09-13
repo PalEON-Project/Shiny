@@ -1,7 +1,7 @@
 # ui.R
 library(shiny)
 
-all_taxa <- readRDS('data/all_taxa.RDS')
+all_taxa <- readRDS('Data/all_taxa.RDS')
 
 shinyUI(pageWithSidebar(
 
