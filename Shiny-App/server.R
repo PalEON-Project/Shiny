@@ -6,7 +6,7 @@ library(grid)
 
 all_taxa <- readRDS('Data/all_taxa.RDS')
 
-load('data/shape.RData')
+load('Data/shape.RData')
 
 thresh <- function(data, lim) {
     data[data > lim] <- lim
