@@ -1,7 +1,7 @@
 # ui.R
 library(shiny)
 
-all_taxa <- readRDS('Data/all_taxa.RDS')
+all_taxa <- readRDS('data/all_taxa.RDS')
 
 shinyUI(pageWithSidebar(
 
@@ -11,8 +11,22 @@ shinyUI(pageWithSidebar(
   
   # Sidebar with dropdown choice of taxa:
   sidebarPanel(
-    selectInput("taxon1", "PLSS Taxon", unique(as.character(all_taxa$taxon))),
-    selectInput("taxon2", "PLSS Second Taxon", c("None", unique(as.character(all_taxa$taxon)))),
+  ##     wellPanel(h6("Panel One"),
+  ##                    p(selectInput("taxon1", "PLSS Taxon", 
+  ##                                  unique(as.character(all_taxa$taxon))),
+  ##                      checkboxInput("sd_box_1", "Uncertainty (Posterior std. deviation)"))),  
+  ##   wellPanel(h4("Panel Two"),
+  ##                    p(selectInput("taxon2", "PLSS Taxon", 
+  ##                                  unique(as.character(all_taxa$taxon))),
+  ##                      checkboxInput("sd_box_2", "Uncertainty (Posterior std. deviation)"))),
+
+                     selectInput("taxon1", "First Panel:", 
+                                   unique(as.character(all_taxa$taxon)), "Ash"),
+                       checkboxInput("sd_box_1", "Uncertainty (Posterior std. deviation)"),  
+                      selectInput("taxon2", "Second Panel:", 
+                                   unique(as.character(all_taxa$taxon)), "Beech"),
+                       checkboxInput("sd_box_2", "Uncertainty (Posterior std. deviation)"),
+
       sliderInput(inputId = "zlimit",
                   label = "Scale upper limit:",
                   min = 0.05, max = 1, value = .5, step = 0.1),
