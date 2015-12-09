@@ -73,7 +73,7 @@ shinyServer(function(input,output){
      breaklabels <- apply(tmp, 1,  function(r) { sprintf("%0.2f - %0.2f", r[1], r[2]) })
      if(!input$sd_box_1) {
          if(!input$continuous) {
-             mean_plot <- ggplot(dataset1(), aes(x = x, y = y, fill = factor(meansDiscrete))) + scale_fill_manual(values = col, labels = breaklabels, guide = 'legend', name = 'proportion') } else {
+             mean_plot <- ggplot(dataset1(), aes(x = x, y = y, fill = factor(meansDiscrete))) + scale_fill_manual(values = col, labels = breaklabels, guide = guide_legend(reverse=TRUE), name = 'proportion') } else {
                                         #        tmpcol <- rev(terrain.colors(16)); tmpcol[1] <- terrain.colors(40)[39]
                                                                                                                                                                                                  mean_plot <- ggplot(dataset1(), aes(x = x, y = y, fill = meansCut)) +  
                                         #            scale_fill_gradient2(na.value = NA, low = '#ffebaf', mid = '#98e600', high = '#267300', midpoint = input$zlimit/2, name = 'proportion')
@@ -98,7 +98,7 @@ shinyServer(function(input,output){
          sd_breaklabels <- apply(tmp, 1,  function(r) { sprintf("%0.2f - %0.2f", r[1], r[2]) })
          
          if(!input$continuous) {
-             sd_plot <- ggplot(dataset1(), aes(x = x, y = y, fill = factor(sdsDiscrete))) + scale_fill_manual(values = sd_col, labels = breaklabels, guide = 'legend', name = '        sd    ') } else {
+             sd_plot <- ggplot(dataset1(), aes(x = x, y = y, fill = factor(sdsDiscrete))) + scale_fill_manual(values = sd_col, labels = breaklabels, guide = guide_legend(reverse=TRUE), name = '        sd    ') } else {
                                         #        tmpcol <- rev(terrain.colors(16)); tmpcol[1] <- terrain.colors(40)[39]
                                                                                                                                                                                                     sd_plot <- ggplot(dataset1(), aes(x = x, y = y, fill = sdsCut)) +  
                                         #            scale_fill_gradient2(na.value = NA, low = '#ffebaf', mid = '#98e600', high = '#267300', midpoint = input$zlimit/2, name = 'proportion')
@@ -124,7 +124,7 @@ shinyServer(function(input,output){
      breaklabels <- apply(tmp, 1,  function(r) { sprintf("%0.2f - %0.2f", r[1], r[2]) })
      if(!input$sd_box_2) {
          if(!input$continuous) {
-             mean_plot <- ggplot(dataset2(), aes(x = x, y = y, fill = factor(meansDiscrete))) + scale_fill_manual(values = col, labels = breaklabels, guide = 'legend', name = 'proportion') } else {
+             mean_plot <- ggplot(dataset2(), aes(x = x, y = y, fill = factor(meansDiscrete))) + scale_fill_manual(values = col, labels = breaklabels, guide = guide_legend(reverse=TRUE), name = 'proportion') } else {
                                         #        tmpcol <- rev(terrain.colors(16)); tmpcol[1] <- terrain.colors(40)[39]
                                                                                                                                                                                                  mean_plot <- ggplot(dataset2(), aes(x = x, y = y, fill = meansCut)) +  
                                         #            scale_fill_gradient2(na.value = NA, low = '#ffebaf', mid = '#98e600', high = '#267300', midpoint = input$zlimit/2, name = 'proportion')
@@ -149,7 +149,7 @@ shinyServer(function(input,output){
          sd_breaklabels <- apply(tmp, 1,  function(r) { sprintf("%0.2f - %0.2f", r[1], r[2]) })
          
          if(!input$continuous) {
-             sd_plot <- ggplot(dataset2(), aes(x = x, y = y, fill = factor(sdsDiscrete))) + scale_fill_manual(values = sd_col, labels = breaklabels, guide = 'legend', name = '        sd    ') } else {
+             sd_plot <- ggplot(dataset2(), aes(x = x, y = y, fill = factor(sdsDiscrete))) + scale_fill_manual(values = sd_col, labels = breaklabels, guide = guide_legend(reverse=TRUE), name = '        sd    ') } else {
                                         #        tmpcol <- rev(terrain.colors(16)); tmpcol[1] <- terrain.colors(40)[39]
                                                                                                                                                                                                     sd_plot <- ggplot(dataset2(), aes(x = x, y = y, fill = sdsCut)) +  
                                         #            scale_fill_gradient2(na.value = NA, low = '#ffebaf', mid = '#98e600', high = '#267300', midpoint = input$zlimit/2, name = 'proportion')
