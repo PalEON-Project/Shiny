@@ -62,7 +62,7 @@ shinyUI(fluidPage(
                      p(selectInput("dlPanel", "Panel", 
                                    c('One', 'Two')),
                        selectInput("FileType", "File Type", 
-                                   c('raster', 'csv'))),
+                                   c('raster', 'csv', 'pdf'))),
                      downloadButton('downloadData', 'Download'))),
     column(7,
            leafletOutput("MapPlot1"),
