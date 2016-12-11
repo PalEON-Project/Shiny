@@ -34,7 +34,7 @@ mg <- c(0, 0, 0, 0)
 
 shinyServer(function(input,output){
   
-  dataset1 <- reactive(function(){
+  dataset1 <- reactive({
     sub <- subset(all_taxa, taxon == input$taxon1)
     sub$sds <- thresh(sub$sds, max_sd)
     sub$meansCut <- thresh(sub$means, input$zlimit)
@@ -48,7 +48,7 @@ shinyServer(function(input,output){
     }
     sub
   })
-  dataset2 <- reactive(function(){
+  dataset2 <- reactive({
  #   if(input$taxon2 != input$taxon1) {
         sub <- subset(all_taxa, taxon == input$taxon2)
         sub$sds <- thresh(sub$sds, max_sd)
